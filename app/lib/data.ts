@@ -1,4 +1,4 @@
-import { sql } from '@vercel/postgres';
+
 import {
   CustomerField,
   CustomersTableType,
@@ -8,6 +8,7 @@ import {
   Revenue,
 } from './definitions';
 import { formatCurrency } from './utils';
+import {sql} from '@vercel/postgres';
 
 export async function fetchRevenue() {
   try {
@@ -41,6 +42,7 @@ export async function fetchLatestInvoices() {
       ...invoice,
       amount: formatCurrency(invoice.amount),
     }));
+    console.log("latest invoices fetched");
     return latestInvoices;
   } catch (error) {
     console.error('Database Error:', error);
